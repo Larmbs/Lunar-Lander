@@ -1,13 +1,19 @@
 from .text import Text
 import pygame as pg
 from .displayable import Displayable
-
+from typing import Callable
 
 
 class MultiLineText(Displayable):
     pass
 
 
+COLOR_FUNC = Callable[[int], tuple[int, int, int]]
+class ColorChanging(Displayable):
+    def __init__(self, text:Text, func:COLOR_FUNC) -> None:
+        pass
+    
+    
 class FlashAble(Displayable):
     def __init__(self, text:Text, on_time:int, off_time:int) -> None:
         self.text = text

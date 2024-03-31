@@ -46,12 +46,12 @@ class Text(Displayable):
             if horz == "center":
                 x_off = (self.rect.width - text_rect.width)//2
             elif horz == "right":
-                x_off = 0
+                x_off = self.rect.width - text_rect.width
                 
             if vert == "center":
                 y_off = (self.rect.height - text_rect.height)//2
-            elif vert == "right":
-                y_off = 0
+            elif vert == "bottom":
+                y_off = self.rect.height - text_rect.height
                 
             self.pos = self.pos[0]+x_off, self.pos[1]+y_off
  

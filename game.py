@@ -43,7 +43,7 @@ class Game:
     
         """OBJECTS"""
         sprite = CircleSprite("blue", 50)
-        phys = MoveableObject(10, 20, 20, 20, 0, 0, 0)
+        phys = MoveableObject(5, 20, 20, 20, 0, 0, 0)
         self.lander = Lander(phys, sprite, 1500)
         self.space.add_object(self.lander)
         
@@ -90,7 +90,7 @@ class Game:
         
         #Test Text
         font = ui.Font("freesansbold.ttf", 100, "white")
-        text = ui.Text("Hello World", font, (0,0), "center_center", pg.Rect(0, 0, self.WIDTH, self.HEIGHT))
+        text = ui.Text("Hello World", font, (0,0), "right_bottom", pg.Rect(0, 0, self.WIDTH, self.HEIGHT))
         self.texts.append(text)
         
         self.event_checker.add_event(Event(pg.K_LEFT, text.display_off))
