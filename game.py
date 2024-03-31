@@ -90,7 +90,7 @@ class Game:
         
         #Test Text
         font = ui.Font("freesansbold.ttf", 100, "white")
-        text = ui.Text("Hello World", font, (0,0))
+        text = ui.Text("Hello World", font, (0,0), "center_center", pg.Rect(0, 0, self.WIDTH, self.HEIGHT))
         self.texts.append(text)
         
         self.event_checker.add_event(Event(pg.K_LEFT, text.display_off))
@@ -114,7 +114,8 @@ class Game:
         
         #Draw Text
         for text in self.texts:
-            text.render(self.surface)
+            if text.to_display:
+                text.render(self.surface)
         
     def get_screen(self) -> pg.Surface:
         return self.surface

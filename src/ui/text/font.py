@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pygame.font as pgf
 
-from .consts import ColorValue
+from .displayable import ColorValue
 
 
 

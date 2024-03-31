@@ -1,7 +1,7 @@
 from .text import Text
 from .font import Font
 
-from .consts import ColorValue, Displayable
+from .displayable import ColorValue, Displayable
 
 from .advanced_texts import FlashAble
 
