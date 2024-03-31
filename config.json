@@ -1,0 +1,20 @@
+{
+    "Window":{
+        "Title":"Lunar Lander",
+        "DisplayFPS":true,
+        "SizeX":1000,
+        "SizeY":650
+        },
+    "Assets":{
+        "Folder":"assets",
+        "Icon":"icon.png",
+        "Maps":"maps.json",
+        "Polygons":"polygons.json"
+    },
+    "Game":{
+        "FrameRate":120,
+        "TerrainThickness":2,
+        "AccelGravity":-100,
+        "AngleGravity":1.57
+    }
+}
