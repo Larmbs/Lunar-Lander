@@ -5,7 +5,9 @@ from typing import Callable
 
 
 class MultiLineText(Displayable):
-    pass
+    def __init__(self, texts:list[Text], pos:tuple[int, int], rect:pg.Rect) -> None:
+        self.texts = texts
+        # we will change all the Text objects to fit appropriately within this larger combined text box
 
 
 COLOR_FUNC = Callable[[int], tuple[int, int, int]]

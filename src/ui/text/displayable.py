@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 ColorValue = pg.Color | int | str | tuple[int, int, int]
 
 class Displayable(ABC):
-    to_display:bool
+    to_display:bool = True
     
     @abstractmethod
     def render(self, surface:pg.Surface) -> None:

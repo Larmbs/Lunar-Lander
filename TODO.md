@@ -2,7 +2,7 @@
 
 ## Features
 - [ ] Allow for screen resizing
-- [ ] Implement easy pygame text creation for ui
+- [ ] Add multi line text
 - [ ] Complete Collision system with appropriate forces and behavior
 
 ## Bug Fixes

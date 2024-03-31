@@ -17,7 +17,7 @@ class Sprite(ABC):
     
     """Just Draws a Line to help see direction"""
     def rotation_arrow(self, pos:VEC, rot:float, surface:pg.Surface) -> None:
-        pg.draw.line(surface, "white", pos, (pos[0] + 50 * cos(rot), pos[1] + -50 * sin(rot)))
+        pg.draw.aaline(surface, "white", pos, (pos[0] + 50 * cos(rot), pos[1] + -50 * sin(rot)))
         
     def world_to_screen_cords(self, pos:VEC, zoom:float, scroll:VEC, surface:pg.Surface) -> VEC:
         center_x = surface.get_width()//2
@@ -85,7 +85,7 @@ class TerrainSprite(Sprite):
         world_width = int(surface.get_width() / zoom)
         world_points = self.scrolled_points(self.get_points(), offset, world_width)
         points = self.transform_points(world_points, zoom, scroll, surface)
-        pg.draw.lines(surface, self.color, False, points, self.thickness)
+        pg.draw.aalines(surface, self.color, False, points, self.thickness)
                 
         
 class PolygonSprite(Sprite):

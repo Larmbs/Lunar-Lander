@@ -21,10 +21,10 @@ class Font:
     
     def get_font(self) -> pgf.Font:
         font = pgf.Font(self.family, self.size)
-        font.set_bold(self.bold)
-        font.set_underline(self.underline)
-        font.set_italic(self.italic)
-        font.set_strikethrough(self.strike)
+        
+        # setting any additional values as specified
+        font.set_bold(self.bold);font.set_underline(self.underline)
+        font.set_italic(self.italic);font.set_strikethrough(self.strike)
         
         return font
     
