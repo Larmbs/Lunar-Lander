@@ -1,5 +1,5 @@
-from .text import Displayable
-from .text import Text, FlashAble, MultiLineText
+from .text import Display
+from .text import Text, MultiLineText
 from .text import Font
 
 from .debug import DebugDisplay

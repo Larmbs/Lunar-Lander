@@ -1,9 +1,9 @@
 from .text import Text
 from .font import Font
 
-from .displayable import ColorValue, Displayable
+from .display import ColorValue, Display
 
-from .advanced_texts import FlashAble, MultiLineText
+from .advanced_texts import MultiLineText
 
 
 """

@@ -1,6 +1,6 @@
 import pygame as pg
 
-from .text import Displayable
+from .text import Display
 
 """
     Represents a collection of texts
@@ -8,8 +8,8 @@ from .text import Displayable
     But it cannot change their look
 """
 
-class Card(Displayable):
-    def __init__(self, texts:list[Displayable]) -> None:
+class Card(Display):
+    def __init__(self, texts:list[Display]) -> None:
         self.texts = texts
         
     def render(self, surface:pg.Surface) -> None:

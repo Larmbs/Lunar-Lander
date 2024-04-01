@@ -61,7 +61,7 @@ class Game:
         self.event_checker.add_event(Event(pg.K_w, self.lander.thrust))
         
         #Screen Scroll Bounding Box
-        padding = 50
+        padding = 80
         
         #X Scroll
         screen_range_x = range(-center_x + padding, center_x - padding)            
@@ -80,7 +80,7 @@ class Game:
         self.event_checker.add_event(Event(is_in_bounds_x, add_x_vel))
         self.event_checker.add_event(Event(is_in_bounds_y, add_y_vel))
         
-        self.texts:list[ui.Displayable] = []
+        self.texts:list[ui.Display] = []
         
         # #Debugger
         # debug_display = ui.DebugDisplay()
@@ -90,9 +90,9 @@ class Game:
         
         #Test Text
         font = ui.Font("freesansbold.ttf", 100, "white")
-        text1 = ui.FlashAble(ui.Text("Hello World", font, (0,0), "center_center"), 70, 70)
-        text2 = ui.FlashAble(ui.Text("Hi there friend ", font, (0,100), "center_center"), 70, 70)
-        text3 = ui.FlashAble(ui.Text("Whats up", font, (0,200), "center_center"), 70, 70)
+        text1 = ui.Text("Hello World", font, (0,0), anchor="center_center")
+        text2 = ui.Text("Hi there friend ", font, (0,100), anchor="center_center")
+        text3 = ui.Text("Whats up", font, (0,200), anchor="center_center")
 
         multi = ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, 650, 400))
         

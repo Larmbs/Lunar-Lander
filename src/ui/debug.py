@@ -1,13 +1,13 @@
 from typing import Callable
 import pygame as pg
 
-from .text import Displayable
+from .text import Display
 
 
 pg.font.init()
 DEBUG = Callable[[], str]
     
-class DebugDisplay(Displayable):
+class DebugDisplay(Display):
     font:pg.font.Font = pg.font.Font('freesansbold.ttf', 32)
     
     def __init__(self) -> None:            
