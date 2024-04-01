@@ -90,11 +90,17 @@ class Game:
         
         #Test Text
         font = ui.Font("freesansbold.ttf", 100, "white")
-        text = ui.Text("Hello World", font, (0,0), "right_bottom", pg.Rect(0, 0, self.WIDTH, self.HEIGHT))
-        self.texts.append(text)
+        text1 = ui.FlashAble(ui.Text("Hello World", font, (0,0), "center_center"), 70, 70)
+        text2 = ui.FlashAble(ui.Text("Hi there friend ", font, (0,100), "center_center"), 70, 70)
+        text3 = ui.FlashAble(ui.Text("Whats up", font, (0,200), "center_center"), 70, 70)
+
+        multi = ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, 650, 400))
         
-        self.event_checker.add_event(Event(pg.K_LEFT, text.display_off))
-        self.event_checker.add_event(Event(pg.K_RIGHT, text.display_on))
+        self.texts.append(multi)
+
+        
+        # self.event_checker.add_event(Event(pg.K_LEFT, lambda:self.texts.append(ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, self.WIDTH, self.HEIGHT)))))
+        # self.event_checker.add_event(Event(pg.K_RIGHT, lambda:print(text2.rect, text2.pos)))
 
     
     

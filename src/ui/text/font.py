@@ -27,4 +27,7 @@ class Font:
         font.set_italic(self.italic);font.set_strikethrough(self.strike)
         
         return font
-    
+
+
+def get_system() -> Font:
+    ...

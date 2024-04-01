@@ -50,5 +50,5 @@ class Text(Displayable):
         self.surface = self.font.get_font().render(self.text, True, self.font.color, self.font.bg_color)
     
     def render(self, surface:pg.Surface) -> None:
-        surface.blit(self.surface, self.pos, self.rect)
+        surface.blit(self.surface, self.pos)
         

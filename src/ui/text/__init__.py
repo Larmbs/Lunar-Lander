@@ -3,7 +3,7 @@ from .font import Font
 
 from .displayable import ColorValue, Displayable
 
-from .advanced_texts import FlashAble
+from .advanced_texts import FlashAble, MultiLineText
 
 
 """
