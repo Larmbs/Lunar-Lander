@@ -94,9 +94,11 @@ class Game:
         text2 = ui.Text("Hi there friend ", font, (0,100), anchor="center_center")
         text3 = ui.Text("Whats up", font, (0,200), anchor="center_center")
 
-        multi = ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, 650, 400))
+        multi = ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, 800, 400))
         
-        self.texts.append(multi)
+        wrapper = ui.Wrapper(multi, pg.Rect(0, 0, self.WIDTH, self.HEIGHT), "center_center")
+        
+        self.texts.append(wrapper)
 
         
         # self.event_checker.add_event(Event(pg.K_LEFT, lambda:self.texts.append(ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, self.WIDTH, self.HEIGHT)))))

@@ -3,7 +3,7 @@ from .font import Font
 
 from .display import ColorValue, Display
 
-from .advanced_texts import MultiLineText
+from .advanced_texts import MultiLineText, Wrapper
 
 
 """
