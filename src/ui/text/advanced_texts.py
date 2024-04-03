@@ -22,7 +22,7 @@ class Wrapper(Display):
     def calc_offset(self):
         item_size = self.display.get_surface().get_rect()
         
-        hor, vert = self.anchor.split("_")
+        vert, hor = self.anchor.split("_")
         x_off, y_off = 0, 0
         
         # check for horizontal alignment specification
@@ -34,25 +34,35 @@ class Wrapper(Display):
         
         self.offset = x_off, y_off       
         
-    def render(self, surface:pg.Surface) -> None:
+    def render(self, surface:pg.Surface) -> None:       
+        # pg.draw.rect(self.surface, "red", self.rect, 10)
+
         surface.blit(self.surface, (self.rect.left, self.rect.top))
     
     def get_surface(self) -> pg.Surface:
         self.surface.blit(self.display.get_surface(), self.offset)
-        
         return self.surface
     
 """Allows to render multiline text easily"""
 class MultiLineText(Display):
-    def __init__(self, displays:list[Display], rect:pg.Rect, line_height:int|None=None) -> None:
+    def __init__(self, displays:list[Display], rect:pg.Rect|None=None, line_height:int|None=None) -> None:
         self.displays = displays
-        self.rect = rect
+        self.rect = rect if rect else pg.Rect(0, 0, *self.calc_dim())
         self.line_height = line_height if line_height else self.calc_line_height()
         
-        self.surface = pg.Surface((rect.width, rect.height), pg.SRCALPHA, 32)
+        self.surface = pg.Surface((self.rect.width, self.rect.height), pg.SRCALPHA, 32)
         self.surface.convert_alpha()
         
         self.update()
+    
+    def calc_dim(self) -> tuple[int, int]:
+        widths = []
+        sum_y = 0
+        for display in self.displays:
+            rect = display.get_surface().get_rect()
+            sum_y += rect.height
+            widths.append(rect.width)
+        return max(widths), sum_y
         
     def calc_line_height(self) -> int:
         return self.rect.height // len(self.displays)
@@ -64,23 +74,35 @@ class MultiLineText(Display):
         for index, display in enumerate(self.displays):
             display.rect = pg.Rect(self.rect.left, self.rect.top + index * self.line_height, self.rect.width, self.line_height)
             display.update()
+            
     def get_surface(self) -> pg.Surface:
         for index, display in enumerate(self.displays):
             image = display.get_surface()
             self.surface.blit(image, (0, index*self.line_height))
+        # pg.draw.rect(self.surface, "blue", self.rect, 10)
         return self.surface
         
 
 """Allows text to change display on or display off state""" 
-# class FlashAble(Text):
-#     def __init__(self, ui_comp:Displayable, on_time:int, off_time:int) -> None:
-#         super().__init__(text.text, text.font, text.pos, text.dim, text.anchor)
-#         self.timer = 0
-#         self.loop_time = on_time + off_time
-#         self.on_time = on_time
+class FlashAble(Display):
+    EMPTY:pg.Surface = pg.Surface((0,0))
+    
+    def __init__(self, display:Display, on_time:int, off_time:int) -> None:
+        self.display = display
         
-#     def render(self, surface:pg.Surface) -> None:
-#         self.timer += 1
-#         if self.timer % self.loop_time <= self.on_time:
-#             super().render(surface)
+        self.timer = 0
+        self.loop_time = on_time + off_time
+        self.on_time = on_time
+        
+    def get_surface(self) -> pg.Surface:
+        self.timer += 1
+        if self.timer % self.loop_time <= self.on_time:
+            return self.display.get_surface()
+        else:
+            return self.EMPTY
+        
+    def render(self, surface:pg.Surface) -> None:
+        self.timer += 1
+        if self.timer % self.loop_time <= self.on_time:
+            self.display.render(surface)
             

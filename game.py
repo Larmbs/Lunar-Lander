@@ -88,18 +88,32 @@ class Game:
         # debug_display.add_node(lambda:F"FPS {int(self.clock.get_fps())}", True)
         # self.texts.append(debug_display)
         
-        #Test Text
-        font = ui.Font("freesansbold.ttf", 100, "white")
-        text1 = ui.Text("Hello World", font, (0,0), anchor="center_center")
-        text2 = ui.Text("Hi there friend ", font, (0,100), anchor="center_center")
-        text3 = ui.Text("Whats up", font, (0,200), anchor="center_center")
-
-        multi = ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, 800, 400))
+        #Fonts
+        SystemFont = ui.Font("pixeloperator", 100, "white")
+        SystemFontSmall = ui.Font("pixeloperator", 30, "white")
+        Window = pg.Rect(0, 0, self.WIDTH, self.HEIGHT)
         
-        wrapper = ui.Wrapper(multi, pg.Rect(0, 0, self.WIDTH, self.HEIGHT), "center_center")
+        #Top Left Heads Up
+        score = ui.Text("SCORE  0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        time = ui.Text( "TIME   0:00", SystemFontSmall, (0,0), (500,50), "center_center")
+        fuel = ui.Text( "FUEL   0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        top_left_list = ui.MultiLineText([score, time, fuel], pg.Rect(0, 0, 300, 100))
+        top_left_heads_up = ui.Wrapper(top_left_list, Window, "top_left")
+        self.texts.append(top_left_heads_up)
         
-        self.texts.append(wrapper)
-
+        #Top Right Heads Up
+        altitude = ui.Text(        "ALTITUDE          0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        horizontal_speed = ui.Text("HORIZONTAL SPEED  0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        vertical_speed = ui.Text(  "VERTICAL SPEED    0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        top_right_list = ui.MultiLineText([altitude, horizontal_speed, vertical_speed], pg.Rect(0, 0, 400, 100))
+        top_right_heads_up = ui.Wrapper(top_right_list, Window, "top_right")
+        self.texts.append(top_right_heads_up)
+        
+        #Low On Fuel Text
+        text = ui.Text("LOW ON FUEL", SystemFontSmall, (0, 0), None, "center_center")
+        wrap = ui.Wrapper(text, pg.Rect(0, 0, self.WIDTH, self.HEIGHT), "center_center")
+        LOW_ON_FUEL = ui.FlashAble(wrap, 60, 60)
+        self.texts.append(LOW_ON_FUEL)
         
         # self.event_checker.add_event(Event(pg.K_LEFT, lambda:self.texts.append(ui.MultiLineText([text1, text2, text3], pg.Rect(0, 0, self.WIDTH, self.HEIGHT)))))
         # self.event_checker.add_event(Event(pg.K_RIGHT, lambda:print(text2.rect, text2.pos)))

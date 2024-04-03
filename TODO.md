@@ -8,6 +8,7 @@
 ## Bug Fixes
 - [ ] Implement Single Pulse Events for toggles
 - [ ] Figure out a better way of setting up events in game.py
+- [ ] There are tons of bugs in the text system
 
 ## Refactoring
 - [ ] Move game constants into separate config.json files

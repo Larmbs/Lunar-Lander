@@ -29,7 +29,7 @@ class Text(Display):
         return self.font.get_font().render(self.text, True, self.font.color, self.font.bg_color)
         
     def calc_offset(self) -> None:
-        hor, vert = self.anchor.split("_")
+        vert, hor = self.anchor.split("_")
         x_off, y_off = 0, 0
         
         # check for horizontal alignment specification

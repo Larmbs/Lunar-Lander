@@ -20,7 +20,7 @@ class Font:
     strike:bool=False
     
     def get_font(self) -> pgf.Font:
-        font = pgf.Font(self.family, self.size)
+        font = pgf.SysFont(self.family, self.size)
         
         # setting any additional values as specified
         font.set_bold(self.bold);font.set_underline(self.underline)

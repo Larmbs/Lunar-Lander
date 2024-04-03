@@ -1,5 +1,5 @@
 from .text import Display
-from .text import Text, MultiLineText, Wrapper
+from .text import Text, MultiLineText, Wrapper, FlashAble
 from .text import Font
 
 from .debug import DebugDisplay
