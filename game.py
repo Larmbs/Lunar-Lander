@@ -13,6 +13,7 @@ from src import (EventsChecker,
                  Space)
 from src.data import MapJSON, get_maps, PolygonJSON, get_polygons
 from src import ui
+from src.entity.sprite.sprite import ImageSprite
 
 
 
@@ -42,7 +43,8 @@ class Game:
         polygons:list[PolygonJSON] = get_polygons(os.path.join(config.Assets.Folder, config.Assets.Polygons))
     
         """OBJECTS"""
-        sprite = CircleSprite("blue", 50)
+        lander_image = pg.image.load(os.path.join(config.Assets.Folder, "lander.png"))
+        sprite = ImageSprite(lander_image, 1, -90)
         phys = MoveableObject(5, 20, 20, 20, 0, 0, 0)
         self.lander = Lander(phys, sprite, 1500)
         self.space.add_object(self.lander)
@@ -89,24 +91,28 @@ class Game:
         # self.texts.append(debug_display)
         
         #Fonts
-        SystemFont = ui.Font("pixeloperator", 100, "white")
-        SystemFontSmall = ui.Font("pixeloperator", 30, "white")
+        SystemFont = ui.Font("turretroadregular", 100, "white")
+        SystemFontSmall = ui.Font("turretroadregular", 30, "white")
         Window = pg.Rect(0, 0, self.WIDTH, self.HEIGHT)
+        Padding = 30
+        WindowWithPadding = pg.Rect(Padding, Padding, self.WIDTH - Padding, self.HEIGHT - Padding)
         
         #Top Left Heads Up
-        score = ui.Text("SCORE  0000", SystemFontSmall, (0,0), (500,50), "center_center")
-        time = ui.Text( "TIME   0:00", SystemFontSmall, (0,0), (500,50), "center_center")
-        fuel = ui.Text( "FUEL   0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        score = ui.Text("SCORE  0000", SystemFontSmall, (0,0), (500,50), "center_left")
+        time = ui.Text( "TIME   0:00", SystemFontSmall, (0,0), (500,50), "center_left")
+        fuel = ui.Text( "FUEL   0000", SystemFontSmall, (0,0), (500,50), "center_left")
         top_left_list = ui.MultiLineText([score, time, fuel], pg.Rect(0, 0, 300, 100))
-        top_left_heads_up = ui.Wrapper(top_left_list, Window, "top_left")
+        top_left = ui.Wrapper(top_left_list, WindowWithPadding, "top_left")
+        top_left_heads_up = ui.Wrapper(top_left, Window, "center_center")
         self.texts.append(top_left_heads_up)
         
         #Top Right Heads Up
-        altitude = ui.Text(        "ALTITUDE          0000", SystemFontSmall, (0,0), (500,50), "center_center")
-        horizontal_speed = ui.Text("HORIZONTAL SPEED  0000", SystemFontSmall, (0,0), (500,50), "center_center")
-        vertical_speed = ui.Text(  "VERTICAL SPEED    0000", SystemFontSmall, (0,0), (500,50), "center_center")
+        altitude = ui.Text(        "ALTITUDE          0000", SystemFontSmall, (0,0), (500,50), "center_right")
+        horizontal_speed = ui.Text("HORIZONTAL SPEED  0000", SystemFontSmall, (0,0), (500,50), "center_right")
+        vertical_speed = ui.Text(  "VERTICAL SPEED    0000", SystemFontSmall, (0,0), (500,50), "center_right")
         top_right_list = ui.MultiLineText([altitude, horizontal_speed, vertical_speed], pg.Rect(0, 0, 400, 100))
-        top_right_heads_up = ui.Wrapper(top_right_list, Window, "top_right")
+        top_right = ui.Wrapper(top_right_list, WindowWithPadding, "top_right")
+        top_right_heads_up = ui.Wrapper(top_right, Window, "center_center")
         self.texts.append(top_right_heads_up)
         
         #Low On Fuel Text

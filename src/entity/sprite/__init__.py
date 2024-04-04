@@ -1,1 +1,1 @@
-from .sprite import Sprite, CircleSprite, TerrainSprite
+from .sprite import Sprite, CircleSprite, TerrainSprite, ImageSprite

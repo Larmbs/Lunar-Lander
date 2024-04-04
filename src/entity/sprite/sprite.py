@@ -101,4 +101,25 @@ class PolygonSprite(Sprite):
         surface.blit(s, pos)
 
 class ImageSprite(Sprite):
-    ...
+    def __init__(self, image:pg.Surface, scale:float, angle_offset:float) -> None:
+        self.scale = scale
+        self.image = pg.transform.scale(image, (image.get_width()*scale, image.get_height()*scale))
+        self.angle_offset = angle_offset
+        
+    def rot_center(self, image:pg.Surface, angle, scale:float):
+        """rotate an image while keeping its center and size"""
+        orig_rect = image.get_rect()
+        rot_image = pg.transform.rotate(image, angle)
+        rot_rect = orig_rect.copy()
+        rot_rect.center = rot_image.get_rect().center
+        rot_image = rot_image.subsurface(rot_rect).copy()
+        rot_image = pg.transform.scale_by(rot_image, scale)
+        return rot_image
+    
+    def draw(self, pos:VEC, rot:float, zoom:float, scroll:VEC, surface:pg.Surface) -> None:
+        image = self.rot_center(self.image, rot*57.324+self.angle_offset, zoom)
+        rect = image.get_rect()
+        width, height = rect.width, rect.height
+        screen_pos = self.world_to_screen_cords(pos, zoom, scroll, surface)
+        surface.blit(image, (screen_pos[0] - width//2, screen_pos[1] - height//2))
+        
