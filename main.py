@@ -7,51 +7,48 @@ from config import get_config, AppConfig
 from game import Game
 
 
-
 class App:
-    def __init__(self, config:AppConfig) -> None:
+    def __init__(self, config: AppConfig) -> None:
         self.config = config
         self.RES = config.Window.SizeX, config.Window.SizeY
 
-        #Initializing Pygame Modules
+        # Initializing Pygame Modules
         pg.init()
         pg.font.init()
-        
-        #Getting Game Objects
+
+        # Getting Game Objects
         self.screen = pg.display.set_mode(self.RES)
         self.clock = pg.time.Clock()
-        
-        #Customizing Window
+
+        # Customizing Window
         pg.display.set_caption(config.Window.Title)
         icon = pg.image.load(
             os.path.join(config.Assets.Folder, config.Assets.Icon)
-            )
+        )
         pg.display.set_icon(icon)
 
-        #Creating Game Instance
+        # Creating Game Instance
         self.game = Game(config, self.clock)
 
     def run(self) -> None:
-        #MainLoop
         while True:
-            #Getting Delta Time
+            # Getting Delta Time
             dt = self.clock.tick(self.config.Game.FrameRate) / 1000
 
-            #Updating Game State
+            # Updating Game State
             self.game.update(dt)
 
-            #Checking For Exit Event
+            # Checking For Exit Event
             [self.exit() for event in pg.event.get() if event.type == pg.QUIT]
 
-            #Rendering Game
+            # Rendering Game
             self.game.render()
             self.screen.blit(self.game.get_screen(), (0, 0))
 
-            #Updating Display
+            # Updating Display
             pg.display.flip()
 
     def exit(self) -> None:
-        #On Exit
         pg.quit()
         sys.exit()
 
@@ -60,6 +57,7 @@ def main() -> None:
     CONFIG = get_config("config.json")
     app = App(CONFIG)
     app.run()
+
 
 if __name__ == "__main__":
     main()

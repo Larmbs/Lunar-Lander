@@ -40,7 +40,6 @@ ADVANCED_COLLIDERS = TriangleCollider | QuadCollider | RectangleCollider | Squar
 handle_collision = CollisionHandler().handle_collision
 
 
-
 """
     This is a module that provides collision detection and action according to it
     These are meant to help simulate basic collisions for arcade games

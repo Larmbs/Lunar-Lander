@@ -5,27 +5,28 @@ import pygame.font as pgf
 from .display import ColorValue
 
 
-
 @dataclass
 class Font:
-    family:str
-    size:int
-    
-    color:ColorValue
-    bg_color:ColorValue|None=None
-    
-    bold:bool=False
-    underline:bool=False
-    italic:bool=False
-    strike:bool=False
-    
+    family: str
+    size: int
+
+    color: ColorValue
+    bg_color: ColorValue | None = None
+
+    bold: bool = False
+    underline: bool = False
+    italic: bool = False
+    strike: bool = False
+
     def get_font(self) -> pgf.Font:
         font = pgf.SysFont(self.family, self.size)
-        
+
         # setting any additional values as specified
-        font.set_bold(self.bold);font.set_underline(self.underline)
-        font.set_italic(self.italic);font.set_strikethrough(self.strike)
-        
+        font.set_bold(self.bold)
+        font.set_underline(self.underline)
+        font.set_italic(self.italic)
+        font.set_strikethrough(self.strike)
+
         return font
 
 

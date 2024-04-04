@@ -1,6 +1,6 @@
-from .events import create_timed_event, Event, EventsChecker
+from . import events
 
-from .entity import *
+from . import entity
 
 from .space import Space
 
