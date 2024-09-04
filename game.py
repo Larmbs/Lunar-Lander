@@ -36,7 +36,7 @@ class Game:
             config.Assets.Folder, "lander.png"))
         sprite = entity.ImageSprite(lander_image, 1, -90)
         phys = entity.MoveableObject(5, 20, 20, 20, 0, 0, 0)
-        self.lander = entity.Lander(phys, sprite, 1500)
+        self.lander = entity.Lander(phys, sprite, 750)
         self.space.add_object(self.lander)
 
         if isinstance(maps, list):
