@@ -4,7 +4,6 @@ import json
 
 """Sub Configs"""
 
-
 class WindowConfig(BaseModel):
     Title: str
     DisplayFPS: bool
@@ -27,7 +26,6 @@ class GameConfig(BaseModel):
 
 
 """Main Config"""
-
 
 class AppConfig(BaseModel):
     Window: WindowConfig

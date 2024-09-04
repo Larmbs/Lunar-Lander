@@ -1,4 +1,3 @@
-from construct import OffsettedEnd
 from numpy import rec
 from yaml import AnchorToken
 from .text import Text
